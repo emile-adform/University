@@ -1,3 +1,9 @@
+using Npgsql;
+using System.Data;
+using University.Interfaces;
+using University.Repositories;
+using University.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +12,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IStudentasRepository, StudentasRepository>();
+builder.Services.AddTransient<IDepartamentasRepository, DepartamentasRepository>();
+builder.Services.AddTransient<IPaskaitaRepository, PaskaitaRepository>();
+builder.Services.AddTransient<IStudentasService, StudentasService>();
+builder.Services.AddTransient<IDepartamentasService, DepartamentasService>();
+builder.Services.AddTransient<IPaskaitaService, PaskaitaService>();
+
+string dbConnectionString = builder.Configuration.GetConnectionString("PostgreConnection");
+builder.Services.AddTransient<IDbConnection>(sp => new NpgsqlConnection(dbConnectionString));
 
 var app = builder.Build();
 

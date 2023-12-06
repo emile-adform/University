@@ -1,6 +1,8 @@
-﻿namespace University.Services
+﻿using University.Interfaces;
+
+namespace University.Services
 {
-    public class StudentasService
+    public class StudentasService : IStudentasService
     {
     }
 }
