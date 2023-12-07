@@ -26,13 +26,13 @@ namespace University.Repositories
 
         public int CreateStudent(string vardas, string pavarde)
         {
-            string sql = $"INSERT INTO studentas VALUES (@vardas, @pavarde)";
+            string sql = $"INSERT INTO studentas VALUES (@vardas, @pavarde) RETURNING id";
             var queryArguments = new
             {
                 vardas = vardas,
                 pavarde = pavarde
             };
-            return _connection.Execute(sql, queryArguments);
+            return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
         public int DeleteStudent(int student_id)
@@ -52,7 +52,7 @@ namespace University.Repositories
             {
                 student_id = student_id
             };
-            return _connection.Execute(sql, queryArguments);
+            return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
         public int UpdateStudentsDepartment(int student_id, int department_id)

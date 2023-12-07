@@ -15,12 +15,12 @@ namespace University.Repositories
 
         public int CreateDepartamentas(string pavadinimas)
         {
-            string sql = $"INSERT INTO departamentas (pavadinimas) VALUES (@pavadinimas)";
+            string sql = $"INSERT INTO departamentas (pavadinimas) VALUES (@pavadinimas) RETURNING id";
             var queryArguments = new
             {
                 pavadinimas = pavadinimas
             };
-            return _connection.Execute(sql, queryArguments);
+            return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id)

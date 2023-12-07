@@ -25,12 +25,12 @@ namespace University.Repositories
 
         public int CreateLecture(string pavadinimas)
         {
-            string sql = $"INSERT INTO paskaita VALUES (@pavadinimas)";
+            string sql = $"INSERT INTO paskaita VALUES (@pavadinimas) RETURNING id";
             var queryArguments = new
             {
                 pavadinimas = pavadinimas
             };
-            return _connection.Execute(sql, queryArguments);
+            return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
         public int DeleteLecture(int paskaita_id)
