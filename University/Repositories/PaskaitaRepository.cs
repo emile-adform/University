@@ -25,7 +25,7 @@ namespace University.Repositories
 
         public int CreateLecture(string pavadinimas)
         {
-            string sql = $"INSERT INTO paskaita VALUES (@pavadinimas) RETURNING id";
+            string sql = $"INSERT INTO paskaita (pavadinimas) VALUES (@pavadinimas) RETURNING id";
             var queryArguments = new
             {
                 pavadinimas = pavadinimas

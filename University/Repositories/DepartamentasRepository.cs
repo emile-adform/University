@@ -25,7 +25,7 @@ namespace University.Repositories
 
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id)
         {
-            string sql = $"SELECT pavadinimas FROM paskaita as p JOIN departamentas_paskaita as dp " +
+            string sql = $"SELECT * FROM paskaita as p JOIN departamentas_paskaita as dp " +
                 $"ON p.id = dp.paskaita_id WHERE dp.departamentas_id = @departamentas_id";
             var queryArguments = new
             {
@@ -36,7 +36,7 @@ namespace University.Repositories
 
         public IEnumerable<Studentas> GetAllStudentsOfDepartment(int departamentas_id)
         {
-            string sql = $"SELECT id, vardas, pavarde FROM studentas as s JOIN studentas_departamentas as sd " +
+            string sql = $"SELECT * FROM studentas as s JOIN studentas_departamentas as sd " +
                 $"ON s.id = sd.studentas_id WHERE sd.departamentas_id = @departamentas_id";
             var queryArguments = new
             {

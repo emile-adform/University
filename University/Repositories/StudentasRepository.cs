@@ -26,7 +26,7 @@ namespace University.Repositories
 
         public int CreateStudent(string vardas, string pavarde)
         {
-            string sql = $"INSERT INTO studentas VALUES (@vardas, @pavarde) RETURNING id";
+            string sql = $"INSERT INTO studentas (vardas, pavarde) VALUES (@vardas, @pavarde) RETURNING id";
             var queryArguments = new
             {
                 vardas = vardas,
@@ -65,5 +65,6 @@ namespace University.Repositories
             };
             return _connection.Execute(sql, queryArguments);
         }
+        
     }
 }
