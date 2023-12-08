@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using System.Data;
-using University.Entities;
+using University.Models.Entities;
 using University.Interfaces;
 
 namespace University.Repositories

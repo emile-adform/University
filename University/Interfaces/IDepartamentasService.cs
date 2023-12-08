@@ -1,4 +1,5 @@
-﻿using University.Entities;
+﻿using University.Models.DTOs;
+using University.Models.Entities;
 
 namespace University.Interfaces
 {
@@ -8,6 +9,8 @@ namespace University.Interfaces
         public int DeleteDepartamentas(int id);
         public IEnumerable<Studentas> GetAllStudentsFromDepartment(int departamentas_id);
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id);
+
+        public int CreateDepartmentWithStudentsAndLectures(CreateDepartmentRequest request);
 
     }
 }

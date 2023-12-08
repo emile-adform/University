@@ -1,4 +1,4 @@
-﻿namespace University.Entities
+﻿namespace University.Models.Entities
 {
     public class Studentas
     {

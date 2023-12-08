@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using System.Data;
-using University.Entities;
 using University.Interfaces;
+using University.Models.Entities;
 
 namespace University.Repositories
 {
@@ -21,6 +21,12 @@ namespace University.Repositories
                 pavadinimas = pavadinimas
             };
             return _connection.QuerySingle<int>(sql, queryArguments);
+        }
+
+        public bool DepartamentasExists(int departamentas_id)
+        {
+            string sql = "SELECT 1 FROM departamentas WHERE id = @departamentas_id";
+            return _connection.QueryFirstOrDefault<bool>(sql, new {departamentas_id = departamentas_id});
         }
 
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id)

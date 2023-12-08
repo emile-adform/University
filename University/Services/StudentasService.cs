@@ -1,5 +1,5 @@
-﻿using University.Entities;
-using University.Interfaces;
+﻿using University.Interfaces;
+using University.Models.Entities;
 using University.Repositories;
 
 namespace University.Services

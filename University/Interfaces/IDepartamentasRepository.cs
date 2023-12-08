@@ -1,4 +1,4 @@
-﻿using University.Entities;
+﻿using University.Models.Entities;
 
 namespace University.Interfaces
 {
@@ -7,6 +7,7 @@ namespace University.Interfaces
         public int CreateDepartamentas(string pavadinimas);
         public IEnumerable<Studentas> GetAllStudentsOfDepartment(int departamentas_id);
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id);
+        public bool DepartamentasExists (int departamentas_id);
 
     }
 }

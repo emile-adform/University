@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using System.Data;
 using University.Interfaces;
+using University.Models.Entities;
 
 namespace University.Repositories
 {
@@ -33,14 +34,14 @@ namespace University.Repositories
             return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
-        public int DeleteLecture(int paskaita_id)
+        public Paskaita GetLectureById(int paskaita_id)
         {
-            string sql = $"DELETE FROM paskaita WHERE id = @paskaita_id";
+            string sql = $"SELECT * FROM paskaita WHERE id = @paskaita_id";
             var queryArguments = new
             {
-                 paskaita_id = paskaita_id
+                paskaita_id = paskaita_id
             };
-            return _connection.Execute(sql, queryArguments);
+            return _connection.QuerySingle<Paskaita>(sql, queryArguments);
         }
     }
 }
