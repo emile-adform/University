@@ -60,6 +60,9 @@ namespace University.Services
             return _departamentasRepository.GetAllStudentsOfDepartment(departamentas_id);
         }
 
-
+        public Departamentas GetDepartmentById(int id)
+        {
+            return _departamentasRepository.GetDepartmentById(id);
+        }
     }
 }

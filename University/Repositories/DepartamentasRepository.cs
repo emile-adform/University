@@ -23,11 +23,6 @@ namespace University.Repositories
             return _connection.QuerySingle<int>(sql, queryArguments);
         }
 
-        public bool DepartamentasExists(int departamentas_id)
-        {
-            string sql = "SELECT 1 FROM departamentas WHERE id = @departamentas_id";
-            return _connection.QueryFirstOrDefault<bool>(sql, new {departamentas_id = departamentas_id});
-        }
 
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id)
         {
@@ -49,6 +44,16 @@ namespace University.Repositories
                 departamentas_id = departamentas_id
             };
             return _connection.Query<Studentas>(sql, queryArguments);
+        }
+
+        public Departamentas GetDepartmentById(int departamentas_id)
+        {
+            string sql = $"SELECT * FROM departamentas WHERE id = @departamentas_id";
+            var queryArguments = new
+            {
+                departamentas_id = departamentas_id
+            };
+            return _connection.QuerySingle<Departamentas>(sql, queryArguments);
         }
     }
 }

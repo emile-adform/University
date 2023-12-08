@@ -31,6 +31,11 @@ namespace University.Services
             return _departamentasRepository.GetAllLecturesFromDepartment(departamentas_id);
         }
 
+        public Studentas GetStudentById(int studentas_id)
+        {
+            return _studentasRepository.GetStudentById(studentas_id);
+        }
+
         public int GetStudentsDepartment(int studentas_id)
         {
             return _studentasRepository.GetStudentsDepartmentId(studentas_id);

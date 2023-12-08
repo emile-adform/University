@@ -10,5 +10,6 @@ namespace University.Interfaces
         public int UpdateStudentsDepartment(int student_id, int department_);
         public IEnumerable<Paskaita> GetAllLecturesFromStudent(int student_id);
         public int GetStudentsDepartment(int studentas_id);
+        public Studentas GetStudentById(int studentas_id);
     }
 }

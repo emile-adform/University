@@ -9,5 +9,6 @@ namespace University.Interfaces
         public int DeleteStudent(int student_id);
         public int UpdateStudentsDepartment(int student_id, int department_);
         public int GetStudentsDepartmentId(int student_id);
+        public Studentas GetStudentById(int student_id);
     }
 }

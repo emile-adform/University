@@ -45,6 +45,16 @@ namespace University.Repositories
             return _connection.Execute(sql, queryArguments);
         }
 
+        public Studentas GetStudentById(int student_id)
+        {
+            string sql = $"SELECT * FROM studentas WHERE id = @student_id";
+            var queryArguments = new
+            {
+                student_id = student_id
+            };
+            return _connection.QuerySingle<Studentas>(sql, queryArguments);
+        }
+
         public int GetStudentsDepartmentId(int student_id)
         {
             string sql = $"SELECT departamentas_id FROM studentas_departamentas WHERE studentas_id = @student_id";

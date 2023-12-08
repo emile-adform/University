@@ -7,6 +7,7 @@ namespace University.Interfaces
     {
         public int CreateDepartamentas(string pavadinimas);
         public int DeleteDepartamentas(int id);
+        public Departamentas GetDepartmentById(int id);
         public IEnumerable<Studentas> GetAllStudentsFromDepartment(int departamentas_id);
         public IEnumerable<Paskaita> GetAllLecturesFromDepartment(int departamentas_id);
 
