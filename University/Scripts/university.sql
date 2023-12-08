@@ -3,16 +3,25 @@
 	pavadinimas varchar(50)
 );
 
+CREATE INDEX idx_departamentas
+ON departamentas (id);
+
 CREATE TABLE studentas (
 	id serial PRIMARY KEY,
 	vardas varchar(50),
 	pavarde varchar(50)
 );
 
+CREATE INDEX idx_studentas
+ON studentas (id);
+
 CREATE TABLE paskaita (
 	id serial PRIMARY KEY,
 	pavadinimas varchar(50)
 );
+
+CREATE INDEX idx_paskaita
+ON paskaita (id);
 
 CREATE TABLE departamentas_paskaita (
 	departamentas_id int,
