@@ -20,62 +20,108 @@ namespace University.Controllers
         [HttpPost]
         public async Task<IActionResult> AddStudentToDepartment(int student_id, int department_id)
         {
-            Departamentas dp = _departamentasService.GetDepartmentById(department_id);
-            Studentas studentas = _studentasService.GetStudentById(student_id);
-            if (dp == null)
+            try
             {
-                return NotFound("This department does not exist");
+                Departamentas dp = _departamentasService.GetDepartmentById(department_id);
+                Studentas studentas = _studentasService.GetStudentById(student_id);
+                if (dp == null)
+                {
+                    return NotFound("This department does not exist");
+                }
+                if (studentas == null)
+                {
+                    return NotFound("This student does not exist");
+                }
+                return Ok(_studentasService.AddStudentToDepartment(student_id, department_id));
             }
-            if (studentas == null)
+            catch (Exception ex)
             {
-                return NotFound("This student does not exist");
+
+                return StatusCode(500, "Unexpected error occurred.");
             }
-            return Ok(_studentasService.AddStudentToDepartment(student_id, department_id));
+
+
         }
         [HttpPost]
         public async Task<IActionResult> CreateStudentAndReferToDepartment(string vardas, string pavarde, int departamentas_id)
         {
-            Departamentas dp = _departamentasService.GetDepartmentById(departamentas_id);
-            if (dp == null)
+            try
             {
-                return NotFound("This department does not exist");
+                Departamentas dp = _departamentasService.GetDepartmentById(departamentas_id);
+                if (dp == null)
+                {
+                    return NotFound("This department does not exist");
+                }
+                return Ok(_studentasService.CreateStudentAndReferItToDepartment(vardas, pavarde, departamentas_id));
             }
-            return Ok(_studentasService.CreateStudentAndReferItToDepartment(vardas, pavarde, departamentas_id));
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+
         }
         [HttpPut]
         public async Task<IActionResult> UpdateStudentsDepartment(int student_id, int department_id)
         {
-            Departamentas dp = _departamentasService.GetDepartmentById(department_id);
-            Studentas studentas = _studentasService.GetStudentById(student_id);
-            if (dp == null)
+            try
             {
-                return NotFound("This department does not exist");
+                Departamentas dp = _departamentasService.GetDepartmentById(department_id);
+                Studentas studentas = _studentasService.GetStudentById(student_id);
+                if (dp == null)
+                {
+                    return NotFound("This department does not exist");
+                }
+                if (studentas == null)
+                {
+                    return NotFound("This student does not exist");
+                }
+                return Ok(_studentasService.UpdateStudentsDepartment(student_id, department_id));
             }
-            if (studentas == null)
+            catch (Exception ex)
             {
-                return NotFound("This student does not exist");
+
+                return StatusCode(500, "Unexpected error occurred.");
             }
-            return Ok(_studentasService.UpdateStudentsDepartment(student_id, department_id));
+
         }
         [HttpGet]
         public async Task<IActionResult> GetAllLecturesFromStudent(int student_id)
         {
-            Studentas studentas = _studentasService.GetStudentById(student_id);
-            if (studentas == null)
+            try
             {
-                return NotFound("This student does not exist");
+                Studentas studentas = _studentasService.GetStudentById(student_id);
+                if (studentas == null)
+                {
+                    return NotFound("This student does not exist");
+                }
+                return Ok(_studentasService.GetAllLecturesFromStudent(student_id));
             }
-            return Ok(_studentasService.GetAllLecturesFromStudent(student_id));
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+
         }
         [HttpGet]
         public async Task<IActionResult> GetStudentsDepartment(int student_id)
         {
-            Studentas studentas = _studentasService.GetStudentById(student_id);
-            if (studentas == null)
+            try
             {
-                return NotFound("This student does not exist");
+                Studentas studentas = _studentasService.GetStudentById(student_id);
+                if (studentas == null)
+                {
+                    return NotFound("This student does not exist");
+                }
+                return Ok(_studentasService.GetStudentsDepartment(student_id));
             }
-            return Ok(_studentasService.GetStudentsDepartment(student_id));
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+
         }
 
     }

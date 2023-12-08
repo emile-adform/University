@@ -17,35 +17,70 @@ namespace University.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateDepartamentas(string pavadinimas)
         {
-            return Ok(_departamentasService.CreateDepartamentas(pavadinimas));
+            try
+            {
+                return Ok(_departamentasService.CreateDepartamentas(pavadinimas));
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
         }
         [HttpGet]
         public async Task<IActionResult> GetAllStudentsFromDepartment(int departamentas_id)
         {
-            IEnumerable<Studentas> studentai = new List<Studentas>(_departamentasService.GetAllStudentsFromDepartment(departamentas_id));
-            if(studentai.Count() == 0)
+            try
             {
-                return NotFound();
+                IEnumerable<Studentas> studentai = new List<Studentas>(_departamentasService.GetAllStudentsFromDepartment(departamentas_id));
+                if(studentai.Count() == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(studentai);
             }
-            return Ok(studentai);
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllLecturesFromDepartment(int departamentas_id)
         {
-            IEnumerable<Paskaita> paskaitos = new List<Paskaita>(_departamentasService.GetAllLecturesFromDepartment(departamentas_id));
-            if (paskaitos.Count() == 0)
+            try
             {
-                return NotFound();
+                IEnumerable<Paskaita> paskaitos = new List<Paskaita>(_departamentasService.GetAllLecturesFromDepartment(departamentas_id));
+                if (paskaitos.Count() == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(_departamentasService.GetAllLecturesFromDepartment(departamentas_id));
             }
-            return Ok(_departamentasService.GetAllLecturesFromDepartment(departamentas_id));
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
+
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateDepartmentWithStudentsAndLectures([FromBody] CreateDepartmentRequest request)
         {
-            
-            return Ok(_departamentasService.CreateDepartmentWithStudentsAndLectures(request));
+            try
+            {
+                return Ok(_departamentasService.CreateDepartmentWithStudentsAndLectures(request));
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "Unexpected error occurred.");
+            }
         }
 
     }
