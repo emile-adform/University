@@ -1,5 +1,7 @@
+using DbUp;
 using Npgsql;
 using System.Data;
+using System.Reflection;
 using University.Interfaces;
 using University.Repositories;
 using University.Services;
@@ -21,6 +23,15 @@ builder.Services.AddTransient<IPaskaitaService, PaskaitaService>();
 
 string dbConnectionString = builder.Configuration.GetConnectionString("PostgreConnection");
 builder.Services.AddTransient<IDbConnection>(sp => new NpgsqlConnection(dbConnectionString));
+
+var upgrader =
+    DeployChanges.To
+        .PostgresqlDatabase(dbConnectionString)
+        .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+        .LogToConsole()
+        .Build();
+
+var result = upgrader.PerformUpgrade();
 
 var app = builder.Build();
 
